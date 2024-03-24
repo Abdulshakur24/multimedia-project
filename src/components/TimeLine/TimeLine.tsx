@@ -27,7 +27,7 @@ const Timeline = (): JSX.Element => {
           hidden: { opacity: 0, x: -100, y: 0 },
         }}
       >
-        About Me
+        About Us
       </SectionTitle>
       <SectionText
         initial="hidden"

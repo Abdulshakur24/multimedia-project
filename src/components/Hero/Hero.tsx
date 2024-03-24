@@ -25,11 +25,11 @@ const Hero = (): JSX.Element => {
         >
           <SectionTitle>
             Welcome To <br />
-            My Personal Portfolio
+            Our Services
           </SectionTitle>
           <SectionText>{info.purpose}</SectionText>
           <Link to="contacts">
-            <Button>Contact Me</Button>
+            <Button>Contact Us</Button>
           </Link>
         </LeftSection>
       </div>

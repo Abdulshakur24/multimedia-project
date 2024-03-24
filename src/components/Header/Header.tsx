@@ -43,7 +43,7 @@ function Header(): JSX.Element {
         }}
       >
         <DiCssdeck size="3rem" />
-        <p> Portfolio</p>
+        <p> Ashakur</p>
       </Div1>
       <Div2
         initial={{ y: 1000, x: 0, opacity: 0 }}

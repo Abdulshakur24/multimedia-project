@@ -1,20 +1,19 @@
-import { useState } from "react";
 import { Header, Footer } from "src/components";
-import { Container, ResumeWrapper } from "./LayoutStyles";
-import { FiExternalLink } from "react-icons/fi";
-import { AnimatePresence } from "framer-motion";
+import { Container } from "./LayoutStyles";
+// import { FiExternalLink } from "react-icons/fi";
+// import { AnimatePresence } from "framer-motion";
 
-import resume from "src/assets/ashakur-resume.pdf";
+// import resume from "src/assets/ashakur-resume.pdf";
 
 export const Layout = ({ children }: { children: JSX.Element }) => {
-  const [visited, setVisited] = useState(false);
+  // const [visited, setVisited] = useState(false);
 
   return (
     <Container>
       <Header />
       <main>
         {children}
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {!visited && (
             <ResumeWrapper
               initial={{ opacity: 0 }}
@@ -28,7 +27,7 @@ export const Layout = ({ children }: { children: JSX.Element }) => {
               </a>
             </ResumeWrapper>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </main>
       <Footer />
     </Container>

@@ -18,7 +18,7 @@ import {
 } from "../../styles/GlobalComponents";
 import { projects } from "../../personal/info";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
 function SlideInWhenVisible({ children }: { children: JSX.Element }) {
@@ -51,7 +51,7 @@ function Projects(): JSX.Element {
         animate={{ y: 0, x: 0, opacity: 1 }}
         transition={{ delay: 0.15 }}
       >
-        Personal Projects
+        Our Projects
       </SectionTitle>
       <GridContainer>
         {projects.map(
@@ -88,7 +88,7 @@ function BlogCardComponent({
   title: string;
   description: string;
   image: string;
-  preview?: string;
+  preview: string;
   tags: string[];
   source: string;
   visit: string;
@@ -96,39 +96,30 @@ function BlogCardComponent({
 }): JSX.Element {
   const [onHover, setOnHover] = useState(false);
   const [viewed, setViewed] = useState(false);
+  const [abortController, setAbortController] = useState(new AbortController());
+
+  const handleMouseEnter = () => {
+    setAbortController(new AbortController());
+    setOnHover(true);
+    setViewed(true);
+  };
+
+  const handleMouseLeave = () => {
+    abortController.abort();
+    setOnHover(false);
+  };
 
   return (
     <SlideInWhenVisible>
-      <BlogCard
-        onMouseEnter={() => {
-          setOnHover(true);
-          setViewed(true);
-        }}
-        onMouseLeave={() => {
-          setOnHover(false);
-        }}
-      >
-        <div className="h-[224.89px] relative">
-          {onHover ? (
-            <ReactPlayer
-              url={preview}
-              playing={true}
-              controls={true}
-              loop={true}
-              muted={false}
-              width="100%"
-              height="100%"
-              playsinline={true}
-            />
-          ) : (
-            <Img src={image} alt={title} />
-          )}
-          {!viewed && (
-            <p className=" absolute -top-12 z-50 right-0 left-0 ml-auto mr-auto animate-wobble ">
-              Hover Me!
-            </p>
-          )}
-        </div>
+      <BlogCard onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+        <DynamicVideo
+          image={image}
+          onHover={onHover}
+          abortController={abortController}
+          preview={preview}
+          viewed={viewed}
+          title={title}
+        />
 
         <TitleContent>
           <HeaderThree>{title}</HeaderThree>
@@ -149,6 +140,60 @@ function BlogCardComponent({
         </UtilityList>
       </BlogCard>
     </SlideInWhenVisible>
+  );
+}
+
+function DynamicVideo({
+  onHover,
+  abortController,
+  preview,
+  image,
+  title,
+  viewed,
+}: {
+  onHover: boolean;
+  preview: string;
+  abortController: AbortController;
+  image: string;
+  title: string;
+  viewed: boolean;
+}) {
+  useEffect(() => {
+    return () => {
+      abortController.abort();
+    };
+  }, [abortController]);
+
+  return (
+    <div className="h-[224.89px] relative">
+      {onHover ? (
+        <ReactPlayer
+          key={onHover ? "playing" : "stopped"}
+          url={preview}
+          playing={onHover}
+          controls={true}
+          loop={true}
+          muted={false}
+          width="100%"
+          height="100%"
+          playsinline={true}
+          config={{
+            file: {
+              attributes: {
+                controlsList: "nodownload",
+              },
+            },
+          }}
+        />
+      ) : (
+        <Img src={image} alt={title} />
+      )}
+      {!viewed && (
+        <p className="absolute -top-12 z-50 right-0 left-0 ml-auto mr-auto animate-wobble">
+          Hover Me!
+        </p>
+      )}
+    </div>
   );
 }
 

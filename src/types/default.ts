@@ -8,7 +8,7 @@ export type projectsProps = {
   image: string;
   tags: string[];
   source: string;
-  preview?: string;
+  preview: string;
   visit: string;
   id: number;
 }[];

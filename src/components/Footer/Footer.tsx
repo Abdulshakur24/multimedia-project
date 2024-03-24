@@ -55,7 +55,7 @@ const Footer = (): JSX.Element => {
             hidden: { opacity: 0, x: -100, y: 0 },
           }}
         >
-          <Slogan>Innovating one project at a time</Slogan>
+          <Slogan>Innovating multiple projects simultaneously </Slogan>
         </CompanyContainer>
         <SocialContainer
           initial="hidden"

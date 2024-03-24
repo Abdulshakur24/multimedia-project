@@ -13,7 +13,7 @@ import {
 
 export const info: infoProps = {
   purpose:
-    "I am a self-taught MERN/PERN Stack developer, currently exploring some of the advanced/guru projects.",
+    "Ashakur Services is dedicated to delivering cutting-edge technological solutions and consulting services to businesses worldwide. Our expertise spans from software development to strategic IT consulting.",
 };
 
 export const projects: projectsProps = [
@@ -84,12 +84,26 @@ export const projects: projectsProps = [
 ];
 
 export const TimeLineData: timeLineDataProps = [
-  { year: 2019, text: "Began my front-end development journey." },
-  { year: 2020, text: "Expanded my skills towards full-stack development." },
-  { year: 2021, text: "Embarked on ambitious project development." },
-  { year: 2022, text: "Set goals for freelance or remote work opportunities." },
-  { year: 2023, text: "Returned to university for further education." },
-  { year: 2024, text: "Continuing academic studies." },
+  {
+    year: 2019,
+    text: "Founded Ashakur Services, focusing on bespoke software development.",
+  },
+  {
+    year: 2020,
+    text: "Expanded our services to include IT consulting and strategy.",
+  },
+  {
+    year: 2021,
+    text: "Launched our proprietary CRM and e-commerce solutions.",
+  },
+  {
+    year: 2022,
+    text: "Gained recognition in the tech community through our tech blog.",
+  },
+  {
+    year: 2023,
+    text: "Continued to innovate with new projects and community involvement.",
+  },
 ];
 
 export const sociallinks: socialLinksProps = [
@@ -130,23 +144,26 @@ export const sociallinks: socialLinksProps = [
 
 export const technologies: technologiesProps = {
   title:
-    "I have worked with a range of technologies in the web development world, from Front-end to Full-stack engineering.",
-  frontEnd: "Experience with <br/> CRA, NextJS, and Laravel.",
+    "At Ashakur Services, we pride ourselves on our expertise with a wide range of technologies, from web development to software architecture.",
+  frontEnd: "Proficient in ReactJS, NextJS, and modern JavaScript frameworks.",
   backEnd:
-    "Experience with Node, Express <br/> and Databases(PostgresSQL, MongoDB).",
-  uiOrux: "Basic knowledge in <br/> tools like Figma.",
+    "Skilled in Node.js, Express, and various databases like MongoDB and PostgreSQL.",
+  uiOrux:
+    "We also have a keen eye for UI/UX design, ensuring a seamless user experience.",
 };
 
 export const aboutMe: aboutMeProps = {
   title:
-    "My name is Abdulshakur; I love all things about front-end design/development and am looking for a job to take my passion to the next level!",
+    "Ashakur Services is a tech firm dedicated to delivering innovative and valuable digital solutions, with a skilled team that transforms complex challenges into user-friendly outcomes.",
 };
 
 export const achievements: achievementsProps = [
-  { number: 50, text: "Repositories" },
+  { number: 100, text: "Successful Projects Delivered" },
+  { number: 50, text: "Satisfied Clients Globally" },
+  { number: 20, text: "Industry Awards & Recognitions" },
 ];
 
 export const contacts: contactsProps = {
   tel: "+254 707049885",
-  email: "ashakur.js24@gmail.com",
+  email: "contact@ashakurservices.com",
 };

@@ -18,7 +18,7 @@ const Acomplishments = () => (
         hidden: { opacity: 0, x: -100, y: 0 },
       }}
     >
-      Personal Achievements
+      Our Achievements
     </SectionTitle>
     <Boxes
       initial="hidden"
