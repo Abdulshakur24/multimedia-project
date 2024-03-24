@@ -112,14 +112,22 @@ function BlogCardComponent({
   return (
     <SlideInWhenVisible>
       <BlogCard onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-        <DynamicVideo
-          image={image}
-          onHover={onHover}
-          abortController={abortController}
-          preview={preview}
-          viewed={viewed}
-          title={title}
-        />
+        <div className="h-[224.89px] relative">
+          {onHover ? (
+            <Video
+              onHover={onHover}
+              preview={preview}
+              abortController={abortController}
+            />
+          ) : (
+            <Img src={image} alt={title} />
+          )}
+          {!viewed && (
+            <p className=" absolute -top-12 z-50 right-0 left-0 ml-auto mr-auto animate-wobble ">
+              Hover Me!
+            </p>
+          )}
+        </div>
 
         <TitleContent>
           <HeaderThree>{title}</HeaderThree>
@@ -143,20 +151,14 @@ function BlogCardComponent({
   );
 }
 
-function DynamicVideo({
+function Video({
   onHover,
-  abortController,
   preview,
-  image,
-  title,
-  viewed,
+  abortController,
 }: {
   onHover: boolean;
   preview: string;
   abortController: AbortController;
-  image: string;
-  title: string;
-  viewed: boolean;
 }) {
   useEffect(() => {
     return () => {
@@ -165,35 +167,24 @@ function DynamicVideo({
   }, [abortController]);
 
   return (
-    <div className="h-[224.89px] relative">
-      {onHover ? (
-        <ReactPlayer
-          key={onHover ? "playing" : "stopped"}
-          url={preview}
-          playing={onHover}
-          controls={true}
-          loop={true}
-          muted={false}
-          width="100%"
-          height="100%"
-          playsinline={true}
-          config={{
-            file: {
-              attributes: {
-                controlsList: "nodownload",
-              },
-            },
-          }}
-        />
-      ) : (
-        <Img src={image} alt={title} />
-      )}
-      {!viewed && (
-        <p className="absolute -top-12 z-50 right-0 left-0 ml-auto mr-auto animate-wobble">
-          Hover Me!
-        </p>
-      )}
-    </div>
+    <ReactPlayer
+      key={onHover ? "playing" : "stopped"}
+      url={preview}
+      playing={onHover}
+      controls={true}
+      loop={true}
+      muted={false}
+      width="100%"
+      height="100%"
+      playsinline={true}
+      config={{
+        file: {
+          attributes: {
+            controlsList: "nodownload",
+          },
+        },
+      }}
+    />
   );
 }
 
