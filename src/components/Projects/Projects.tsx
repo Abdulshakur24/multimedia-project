@@ -18,7 +18,7 @@ import {
 } from "../../styles/GlobalComponents";
 import { projects } from "../../personal/info";
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Cloudinary } from "@cloudinary/url-gen/index";
 import { AdvancedVideo } from "@cloudinary/react";
 import { quality } from "@cloudinary/url-gen/actions/delivery";
@@ -65,7 +65,6 @@ function Projects(): JSX.Element {
             description,
             visit,
             source,
-            preview,
             videoCode,
           }) => {
             return (
@@ -74,7 +73,6 @@ function Projects(): JSX.Element {
                 id={id}
                 title={title}
                 image={image}
-                preview={preview}
                 tags={tags}
                 videoCode={videoCode}
                 description={description}
@@ -95,14 +93,12 @@ function BlogCardComponent({
   tags,
   description,
   videoCode,
-  preview,
   visit,
   source,
 }: {
   title: string;
   description: string;
   image: string;
-  preview: string;
   tags: string[];
   videoCode: string;
   source: string;
@@ -126,12 +122,7 @@ function BlogCardComponent({
       <BlogCard onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
         <div className="h-[224.89px] relative">
           {onHover ? (
-            <Video
-              preview={preview}
-              image={image}
-              videoCode={videoCode}
-              playing={onHover}
-            />
+            <Video image={image} videoCode={videoCode} />
           ) : (
             <Img src={image} alt={title} />
           )}
@@ -170,34 +161,7 @@ const cld = new Cloudinary({
   },
 });
 
-function Video({
-  videoCode,
-  playing,
-  image,
-}: {
-  videoCode: string;
-  preview: string;
-  playing: boolean;
-  image: string;
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      const promise = playing
-        ? videoRef.current.play()
-        : videoRef.current.pause();
-
-      if (promise !== undefined) {
-        promise
-          .then(() => {})
-          .catch((error) => {
-            console.error("Autoplay was prevented:", error);
-          });
-      }
-    }
-  }, [playing]);
-
+function Video({ videoCode, image }: { videoCode: string; image: string }) {
   return (
     <AdvancedVideo
       controls
@@ -211,7 +175,7 @@ function Video({
       muted={false}
       playsInline
       preload={image}
-      cldVid={cld.video(videoCode).delivery(quality("auto"))}
+      cldVid={cld.video(videoCode).delivery(quality("auto:best"))}
     />
   );
 }
