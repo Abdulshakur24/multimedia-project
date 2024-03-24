@@ -1,8 +1,8 @@
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import styled from "styled-components";
 
 const BackgroundAnimation = (): JSX.Element => {
-  const { scrollY } = useViewportScroll();
+  const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 100], [0, -100]);
 
   return (

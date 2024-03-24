@@ -9,11 +9,11 @@ import {
   NavLink,
   ProgressBar,
 } from "./HeaderStyles";
-import { useTransform, useViewportScroll } from "framer-motion";
+import { useTransform, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
 
 function Header(): JSX.Element {
-  const { scrollY, scrollYProgress } = useViewportScroll();
+  const { scrollY, scrollYProgress } = useScroll();
   const x = useTransform;
   const y = useTransform;
   const opacity = useTransform;

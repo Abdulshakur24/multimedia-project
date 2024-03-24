@@ -11,6 +11,12 @@ import {
   timeLineDataProps,
 } from "src/types/default";
 
+// import tiktokCloneVideo from "./assets/tiktok-clone.mp4";
+import tiktokCloneVideo from "../assets/tiktok-clone.mp4";
+import realtorVideo from "../assets/realtor.mp4";
+import audiophileVideo from "../assets/audiophile.mp4";
+import spaceVideo from "../assets/space-tourism.mp4";
+
 export const info: infoProps = {
   purpose:
     "Ashakur Services is dedicated to delivering cutting-edge technological solutions and consulting services to businesses worldwide. Our expertise spans from software development to strategic IT consulting.",
@@ -20,10 +26,11 @@ export const projects: projectsProps = [
   {
     title: "TikTok Clone",
     description:
-      "A social media that allows you to post videos, comments, and like a post with google authentication!",
+      "Experience the thrill of short-form video with our TikTok Clone. Post, comment, and like with Google authentication, built on NextJS and ReactJS.",
     image: new URL("../assets/tiktok-clone.jpg", import.meta.url).href,
-    preview: new URL("../assets/tiktok-clone.mp4", import.meta.url).href,
+    preview: tiktokCloneVideo,
     tags: ["NextJS", "ReactJS", "SANITY", "Framer Motion"],
+    videoCode: "tiktok-clone_bt7ood",
     source: "#",
     visit: "#",
     id: 1,
@@ -31,10 +38,11 @@ export const projects: projectsProps = [
   {
     title: "Real Estate (Emirates)",
     description:
-      "A real estate site with third-party API (Bayut API). End-users are able to explore, search, and filter queries!",
+      "Explore and filter properties on our Real Estate platform, integrated with Bayut API for a comprehensive search experience. Built with NextJS and ReactJS.",
     image: new URL("../assets/realtor.jpg", import.meta.url).href,
-    preview: new URL("../assets/realtor.mp4", import.meta.url).href,
+    preview: realtorVideo,
     tags: ["NextJS", "ReactJS", "Chakra UI", "Framer Motion"],
+    videoCode: "realtor_bcuv0z",
     source: "#",
     visit: "#",
     id: 2,
@@ -52,10 +60,11 @@ export const projects: projectsProps = [
   {
     title: "Audiophile",
     description:
-      "This is a multi-page website that focuses on audio gear. It is made with PostgresSQL for the backend and can easily be scaled for more products.",
+      "Discover high-quality audio gear on our multi-page Audiophile website, scalable and backed with PostgreSQL. Developed using ReactJS and NodeJS.",
     image: new URL("../assets/audiophile.jpg", import.meta.url).href,
-    preview: new URL("../assets/audiophile.mp4", import.meta.url).href,
+    preview: audiophileVideo,
     tags: ["ReactJS", "PostgreSQL", "NodeJS", "Express", "Passport JS"],
+    videoCode: "audiophile_pqmhnb",
     source: "#",
     visit: "#",
     id: 4,
@@ -63,10 +72,11 @@ export const projects: projectsProps = [
   {
     title: "Space Tourism",
     description:
-      "This is a challenging front-end project from Front-end Mentor. I was provided with Figma designs to transform them into a fully functional website.",
+      "Embark on a digital journey with our Space Tourism website, a project challenging front-end skills to bring Figma designs to life using ReactJS.",
     image: new URL("../assets/space-tourism.jpg", import.meta.url).href,
-    preview: new URL("../assets/space-tourism.mp4", import.meta.url).href,
+    preview: spaceVideo,
     tags: ["ReactJS", "Styled components", "Framer motion"],
+    videoCode: "space-tourism_jvyyzh",
     source: "#",
     visit: "#",
     id: 5,

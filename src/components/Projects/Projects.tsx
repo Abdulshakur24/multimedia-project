@@ -18,8 +18,10 @@ import {
 } from "../../styles/GlobalComponents";
 import { projects } from "../../personal/info";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
-import ReactPlayer from "react-player";
+import { useEffect, useRef, useState } from "react";
+import { Cloudinary } from "@cloudinary/url-gen/index";
+import { AdvancedVideo } from "@cloudinary/react";
+import { quality } from "@cloudinary/url-gen/actions/delivery";
 
 function SlideInWhenVisible({ children }: { children: JSX.Element }) {
   return (
@@ -55,7 +57,17 @@ function Projects(): JSX.Element {
       </SectionTitle>
       <GridContainer>
         {projects.map(
-          ({ id, title, image, tags, description, visit, source, preview }) => {
+          ({
+            id,
+            title,
+            image,
+            tags,
+            description,
+            visit,
+            source,
+            preview,
+            videoCode,
+          }) => {
             return (
               <BlogCardComponent
                 key={id}
@@ -64,6 +76,7 @@ function Projects(): JSX.Element {
                 image={image}
                 preview={preview}
                 tags={tags}
+                videoCode={videoCode}
                 description={description}
                 visit={visit}
                 source={source}
@@ -81,6 +94,7 @@ function BlogCardComponent({
   image,
   tags,
   description,
+  videoCode,
   preview,
   visit,
   source,
@@ -90,22 +104,20 @@ function BlogCardComponent({
   image: string;
   preview: string;
   tags: string[];
+  videoCode: string;
   source: string;
   visit: string;
   id: number;
 }): JSX.Element {
   const [onHover, setOnHover] = useState(false);
   const [viewed, setViewed] = useState(false);
-  const [abortController, setAbortController] = useState(new AbortController());
 
   const handleMouseEnter = () => {
-    setAbortController(new AbortController());
     setOnHover(true);
     setViewed(true);
   };
 
   const handleMouseLeave = () => {
-    abortController.abort();
     setOnHover(false);
   };
 
@@ -115,9 +127,10 @@ function BlogCardComponent({
         <div className="h-[224.89px] relative">
           {onHover ? (
             <Video
-              onHover={onHover}
               preview={preview}
-              abortController={abortController}
+              image={image}
+              videoCode={videoCode}
+              playing={onHover}
             />
           ) : (
             <Img src={image} alt={title} />
@@ -151,39 +164,54 @@ function BlogCardComponent({
   );
 }
 
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: "dabxjpjk8",
+  },
+});
+
 function Video({
-  onHover,
-  preview,
-  abortController,
+  videoCode,
+  playing,
+  image,
 }: {
-  onHover: boolean;
+  videoCode: string;
   preview: string;
-  abortController: AbortController;
+  playing: boolean;
+  image: string;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
-    return () => {
-      abortController.abort();
-    };
-  }, [abortController]);
+    if (videoRef.current) {
+      const promise = playing
+        ? videoRef.current.play()
+        : videoRef.current.pause();
+
+      if (promise !== undefined) {
+        promise
+          .then(() => {})
+          .catch((error) => {
+            console.error("Autoplay was prevented:", error);
+          });
+      }
+    }
+  }, [playing]);
 
   return (
-    <ReactPlayer
-      key={onHover ? "playing" : "stopped"}
-      url={preview}
-      playing={onHover}
-      controls={true}
-      loop={true}
-      muted={false}
-      width="100%"
-      height="100%"
-      playsinline={true}
-      config={{
-        file: {
-          attributes: {
-            controlsList: "nodownload",
-          },
-        },
+    <AdvancedVideo
+      controls
+      loop
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center",
       }}
+      muted={false}
+      playsInline
+      preload={image}
+      cldVid={cld.video(videoCode).delivery(quality("auto"))}
     />
   );
 }
