@@ -147,8 +147,12 @@ function BlogCardComponent({
           </TagList>
         </div>
         <UtilityList>
-          <ExternalLinks href={visit}>Visit</ExternalLinks>
-          <ExternalLinks href={source}>Source</ExternalLinks>
+          <ExternalLinks target="_blank" href={visit}>
+            Visit
+          </ExternalLinks>
+          <ExternalLinks target="_blank" href={source}>
+            Source
+          </ExternalLinks>
         </UtilityList>
       </BlogCard>
     </SlideInWhenVisible>

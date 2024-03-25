@@ -24,8 +24,8 @@ export const projects: projectsProps = [
     image: new URL("../assets/tiktok-clone.jpg", import.meta.url).href,
     tags: ["NextJS", "ReactJS", "SANITY", "Framer Motion"],
     videoCode: "tiktok-clone_bt7ood",
-    source: "#",
-    visit: "#",
+    source: "https://github.com/Abdulshakur24/tiktok-clone",
+    visit: "https://tiktok-clone-by-ashakur.vercel.app/",
     id: 1,
   },
   {
@@ -35,8 +35,8 @@ export const projects: projectsProps = [
     image: new URL("../assets/realtor.jpg", import.meta.url).href,
     tags: ["NextJS", "ReactJS", "Chakra UI", "Framer Motion"],
     videoCode: "realtor_bcuv0z",
-    source: "#",
-    visit: "#",
+    source: "https://github.com/Abdulshakur24/real-estate",
+    visit: "https://real-estate-by-ashakur.vercel.app/",
     id: 2,
   },
   // {
@@ -56,8 +56,8 @@ export const projects: projectsProps = [
     image: new URL("../assets/audiophile.jpg", import.meta.url).href,
     tags: ["ReactJS", "PostgreSQL", "NodeJS", "Express", "Passport JS"],
     videoCode: "audiophile_pqmhnb",
-    source: "#",
-    visit: "#",
+    source: "https://github.com/Abdulshakur24/e-commerce",
+    visit: "https://audiophile-by-ashakur.netlify.app",
     id: 4,
   },
   {
@@ -67,8 +67,8 @@ export const projects: projectsProps = [
     image: new URL("../assets/space-tourism.jpg", import.meta.url).href,
     tags: ["ReactJS", "Styled components", "Framer motion"],
     videoCode: "space-tourism_jvyyzh",
-    source: "#",
-    visit: "#",
+    source: "https://github.com/Abdulshakur24/space-tourism",
+    visit: "https://space-tourism-by-ashakur.netlify.app/",
     id: 5,
   },
   // {
